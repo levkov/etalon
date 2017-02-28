@@ -7,8 +7,7 @@ RUN yum install -y epel-release && \
     yum install -y python-pip openssh-server openssh-clients nginx redis dos2unix && \
     pip install supervisor requests==2.5.3 Flask gunicorn redis rq rq-dashboard rq-scheduler
 
-RUN groupadd -r siteop && useradd -r -g siteop siteop && \
-    echo 'root:ContaineR' | chpasswd
+RUN echo 'root:ContaineR' | chpasswd
 
 RUN rm -f /etc/ssh/ssh_host_ecdsa_key /etc/ssh/ssh_host_rsa_key && \
     ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_ecdsa_key && \
