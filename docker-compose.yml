@@ -1,0 +1,11 @@
+etalon:
+  build: .
+  ports:
+  - "222:22"
+  - "9001:9001"
+  - "9181:9181"
+  - "80:80"
+  hostname: etalon
+  environment:
+    EXAMPLE: test
+
