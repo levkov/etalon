@@ -5,7 +5,7 @@ RUN rm -f /etc/localtime && ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 RUN yum update -y
 RUN yum install -y epel-release && \
     yum install -y python-pip openssh-server openssh-clients nginx redis dos2unix && \
-    pip install supervisor requests==2.5.3 Flask gunicorn redis rq rq-dashboard rq-scheduler
+    pip install supervisor requests==2.5.3 Flask gunicorn redis rq rq-dashboard rq-scheduler flask-socketio
 
 RUN echo 'root:ContaineR' | chpasswd
 
