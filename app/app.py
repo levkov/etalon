@@ -34,7 +34,7 @@ def get_job(job_id):
         else:
             return jsonify(job.result)
     except:
-        return jsonify({"answer": "error"}), 404
+        return jsonify({"status": "error"}), 404
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081)
