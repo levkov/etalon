@@ -6,6 +6,7 @@ from common import *
 
 redis_conn = Redis()
 q = Queue(connection=redis_conn)
+failed_q = Queue('failed', connection=redis_conn)
 
 async_mode = None
 
