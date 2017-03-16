@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from flask_socketio import SocketIO
 from rq import Queue
 from redis import Redis
+import time
 from common import *
 
 redis_conn = Redis()
@@ -27,8 +28,10 @@ def monitor():
 
 @app.route('/hello', methods=['POST'])
 def sus():
-    output = request.form["name"]
-    print output
+    job_submit_time = int(time.time())
+    output = {}
+    output["name"] = request.form["name"]
+    output["job_submit_time"] = job_submit_time
     job = q.enqueue(hello, output, result_ttl=86400)
     return jsonify({"job": job.id})
 
