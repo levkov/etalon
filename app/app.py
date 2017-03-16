@@ -19,6 +19,12 @@ thread = None
 def index():
     return render_template('index.html')
 
+
+@app.route('/monitor')
+def monitor():
+    monitor_data = {"jobs": str(len(q.jobs)), "failed": str(len(failed_q))}
+    return jsonify(monitor_data)   
+
 @app.route('/hello', methods=['POST'])
 def sus():
     output = request.form["name"]

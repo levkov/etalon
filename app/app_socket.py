@@ -19,7 +19,12 @@ def background_thread():
     while True:
         socketio.sleep(10)
         socketio.emit('my_response',
-                      {'data': 'Jobs Waiting: ' + str(len(q.jobs)) + ' | Failed: ' + str(len(failed_q))},
+                      {'data': 'Jobs Waiting: ' 
+                      + str(len(q.jobs)) 
+                      + ' | Failed: ' 
+                      + str(len(failed_q)) 
+                      + " | Waiting Job IDs: " 
+                      + str(q.job_ids).replace("u\'", "").replace("\'", "")},
                       namespace='/status')
 
 @socketio.on('my_ping', namespace='/status')
