@@ -20,35 +20,13 @@ def background_thread():
         socketio.sleep(10)
         socketio.emit('my_response',
                       {'data': 'Jobs Waiting: ' + str(len(q.jobs))},
-                      namespace='/test')
+                      namespace='/status')
 
-
-@app.route('/status')
-def index():
-    return render_template('index.html', async_mode=socketio.async_mode)
-
-
-@socketio.on('my_event', namespace='/test')
-def test_message(message):
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': message['data'], 'count': session['receive_count']})
-
-
-@socketio.on('my_broadcast_event', namespace='/test')
-def test_broadcast_message(message):
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': message['data'], 'count': session['receive_count']},
-         broadcast=True)
-
-
-@socketio.on('my_ping', namespace='/test')
+@socketio.on('my_ping', namespace='/status')
 def ping_pong():
     emit('my_pong')
 
-
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/status')
 def test_connect():
     global thread
     if thread is None:
