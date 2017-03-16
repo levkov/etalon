@@ -16,16 +16,14 @@ thread = None
 
 def background_thread():
     """Example of how to send server generated events to clients."""
-    count = 0
     while True:
         socketio.sleep(10)
-        count += 1
         socketio.emit('my_response',
-                      {'data': 'Jobs Waiting: ' + str(len(q.jobs)), 'count': count},
+                      {'data': 'Jobs Waiting: ' + str(len(q.jobs))},
                       namespace='/test')
 
 
-@app.route('/')
+@app.route('/status')
 def index():
     return render_template('index.html', async_mode=socketio.async_mode)
 

@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 thread = None
 
-@app.route('/')
+@app.route('/status')
 def index():
     return render_template('index.html', async_mode=socketio.async_mode)
 
