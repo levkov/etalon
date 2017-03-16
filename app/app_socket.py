@@ -20,9 +20,9 @@ def background_thread():
         socketio.sleep(10)
         socketio.emit('my_response',
                       {'data': 'Jobs Waiting: ' 
-                      + str(len(q.jobs)) 
+                      + str(q.count) 
                       + ' | Failed: ' 
-                      + str(len(failed_q)) 
+                      + str(failed_q.count) 
                       + " | Waiting Job IDs: " 
                       + str(q.job_ids).replace("u\'", "").replace("\'", "")},
                       namespace='/status')
