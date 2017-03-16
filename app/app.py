@@ -40,6 +40,8 @@ class Hello(Resource):
 
 @api.route('/result/<string:job_id>')
 class Result(Resource):
+    @api.response(200, 'Success')
+    @api.response(500, 'Validation Error')
     def get(self, job_id):
         job = q.fetch_job(job_id)
         try:
