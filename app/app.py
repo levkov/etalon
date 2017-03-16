@@ -29,7 +29,9 @@ def monitor():
     return jsonify(monitor_data)   
 
 @api.route('/hello/<string:name>')
+@api.doc(params={'name': 'Your Name'}, description="Get Yor Name")
 class Hello(Resource):
+    @api.response(200, 'Success')
     def post(self, name):
         job_submit_time = int(time.time())
         output = {}
@@ -39,6 +41,7 @@ class Hello(Resource):
         return jsonify({"job": job.id})
 
 @api.route('/result/<string:job_id>')
+@api.doc(params={'job_id': 'An Job ID'}, description="Get Job Result")
 class Result(Resource):
     @api.response(200, 'Success')
     @api.response(500, 'Validation Error')
