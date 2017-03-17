@@ -13,11 +13,11 @@ def hello(inpt):
     while i > 1:
         job = get_current_job()
         job.meta['message'] = "working..." + str(i) + " seconds left"
-        job.meta['status'] = "running"
         job.meta["update_timestamp"] = str(int(time.time()))
         job.save()
         i -= 1
         time.sleep(1)
+#        i = i/0   #test failure
     stop_time = int(time.time())
     run_time = str(stop_time - start_time)
     wait_time = str(start_time - int(inpt["job_submit_time"]))

@@ -53,7 +53,9 @@ class Result(Resource):
         job = q.fetch_job(job_id)
         try:
             if job.result == None:
-                return jsonify(job.meta)
+                job_status = dict(job.meta)
+                job_status["job_status"] = job.status
+                return jsonify(job_status)
             else:
                 return jsonify(job.result)
         except:
