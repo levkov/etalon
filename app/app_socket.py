@@ -25,13 +25,13 @@ def background_thread():
                       + str(failed_q.count) 
                       + " | Waiting Job IDs: " 
                       + str(q.job_ids).replace("u\'", "").replace("\'", "")},
-                      namespace='/status')
+                      namespace='/log')
 
-@socketio.on('my_ping', namespace='/status')
+@socketio.on('my_ping', namespace='/log')
 def ping_pong():
     emit('my_pong')
 
-@socketio.on('connect', namespace='/status')
+@socketio.on('connect', namespace='/log')
 def test_connect():
     global thread
     if thread is None:

@@ -19,7 +19,7 @@ thread = None
 api = Api(app, doc='/doc/', title='Hello', description='Hello API Example')
 
 
-@app.route('/status')
+@app.route('/log')
 def index():
     return render_template('index.html')
 

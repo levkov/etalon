@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>API Jobs Status</title>
+    <title>API Real Time Log</title>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -11,7 +11,7 @@
             // Socket.IO will multiplex all those connections on a single
             // physical channel. If you don't care about multiple channels, you
             // can set the namespace to an empty string.
-            namespace = '/status';
+            namespace = '/log';
             // Connect to the Socket.IO server.
             // The connection URL has the following format:
             //     http[s]://<domain>:<port>[/<namespace>]
@@ -57,7 +57,7 @@
     </script>
 </head>
 <body>
-    <h1>API Jobs Status</h1>
+    <h1>API Real Time Log</h1>
     <p>Average ping/pong latency: <b><span id="ping-pong"></span>ms</b></p>
     <div id="log"></div>
 </body>
