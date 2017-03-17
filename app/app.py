@@ -28,14 +28,15 @@ def monitor():
     monitor_data = {"service_status": "OK", "jobs": str(len(q.jobs)), "failed": str(len(failed_q))}
     return jsonify(monitor_data)   
 
-@api.route('/hello/<string:name>')
-@api.doc(params={'name': 'Your Name'}, description="Get Yor Name")
+@api.route('/hello')
+@api.doc(description="Get Yor Name")
 class Hello(Resource):
     @api.response(200, 'Success')
-    def post(self, name):
+    @api.doc(params={'name': {'in': 'formData', 'description': 'Your Name'}})
+    def post(self):
         job_submit_time = int(time.time())
         output = {}
-        output["name"] = name
+        output["name"] = request.form['name']
         output["job_submit_time"] = job_submit_time
         job = q.enqueue(hello, output, result_ttl=86400)
         return jsonify({"job": job.id})
