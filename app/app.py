@@ -57,7 +57,9 @@ class Result(Resource):
                 job_status["job_status"] = job.status
                 return jsonify(job_status)
             else:
-                return jsonify(job.result)
+                job_result = dict(job.result)
+                job_result["job_status"] = job.status
+                return jsonify(job_result)
         except:
             return jsonify({"status": "error"}), 404       
 
