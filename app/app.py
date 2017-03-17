@@ -23,10 +23,13 @@ api = Api(app, doc='/doc/', title='Hello', description='Hello API Example')
 def index():
     return render_template('index.html')
 
-@app.route('/monitor')
-def monitor():
-    monitor_data = {"service_status": "OK", "jobs": str(len(q.jobs)), "failed": str(len(failed_q))}
-    return jsonify(monitor_data)   
+@api.route('/monitor')
+@api.doc(description="Health Check data in JSON")
+class Monitor(Resource):
+    @api.response(200, 'Success')
+    def get(self):
+        monitor_data = {"service_status": "OK", "jobs_waiting": str(len(q.jobs)), "jobs_failed": str(len(failed_q))}
+        return jsonify(monitor_data) 
 
 @api.route('/hello')
 @api.doc(description="Get Yor Name")
