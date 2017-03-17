@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode=async_mode)
 thread = None
-api = Api(app, doc='/doc/')
+api = Api(app, doc='/doc/', title='Hello', description='Hello API Example')
 
 
 @app.route('/status')
