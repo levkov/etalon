@@ -24,7 +24,9 @@ def background_thread():
                       + ' | Failed: ' 
                       + str(failed_q.count) 
                       + " | Waiting Job IDs: " 
-                      + str(q.job_ids).replace("u\'", "").replace("\'", "")},
+                      + str(q.job_ids).replace("u\'", "").replace("\'", "")
+                      + " | Failed Job IDs: "
+                      + str(failed_q.job_ids).replace("u\'", "").replace("\'", "")},
                       namespace='/log')
 
 @socketio.on('my_ping', namespace='/log')
