@@ -42,7 +42,7 @@ class Hello(Resource):
         return jsonify({"job": job.id})
 
 @api.route('/result/<string:job_id>')
-@api.doc(params={'job_id': 'An Job ID'}, description="Get Job Result")
+@api.doc(params={'job_id': 'Job ID'}, description="Get Job Result")
 class Result(Resource):
     @api.response(200, 'Success')
     @api.response(500, 'Validation Error')
